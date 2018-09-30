@@ -303,7 +303,7 @@ Linear regression predicts a real-valued output based on an input value. We disc
 `x`: input값, feature  
 `y`: output, target  
 
-위의 그림에서 $x_1 = 2104$,  $x_2 = 1416$, $y_1 = 406$ 이다.  
+위의 그림에서 x_1 = 2104,  x_2 = 1416, y_1 = 406 이다.  
 
 #### Model Representation  
 
@@ -314,9 +314,7 @@ Hypothesis Function (가설 함수)
 
 Hypothesis Function은 다음과 같이 수식으로 나타낼 수 있다.   
 
-$$
 h_\theta(x) = \theta_0 + \theta_1x  
-$$
 
   
 
