@@ -589,7 +589,8 @@ $$
 
 So vectors are a subset of matrices. The above vector is a 4 x 1 matrix.  
 
-- notations  
+#### notations  
+
 4 demensional Vector 이다.  
   
 - $A_{ij}$  
@@ -604,8 +605,8 @@ refers to the element in the ith row of the vector.
 refers to the set of scalar real numbers.  
 - $\mathbb{R^n}$  
 refers to the set of n-dimensional vectors of real numbers.  
-  
-- Octave/Matlab commands  
+
+#### Octave/Matlab commands  
   
 ```matlab  
 % The ; denotes we are going back to a new row.  
@@ -631,7 +632,8 @@ In scalar multiplication, we simply multiply every element by the scalar value:
 In scalar division, we simply divide every element by the scalar value:  
 ![](img/scalar_div.png)  
 
-- Octave/Matlab commands  
+#### Octave/Matlab commands  
+
 ```matlab  
 % Initialize matrix A and B   
 A = [1, 2, 4; 5, 3, 2]  
@@ -669,7 +671,8 @@ Hypothesis function $h_\theta(x) = -40 + 0.25x$ 가 있다고 가정하고 내�
 우리는 이런 연산을 다른 모델에서 regression 을 개발하기 위한 연산자로 잘 활용할 수 있다.   
 
 
-- Octave/Matlab commands  
+#### Octave/Matlab commands  
+
 ```matlab  
 % Initialize matrix A   
 A = [1, 2, 3; 4, 5, 6;7, 8, 9]   
@@ -695,7 +698,8 @@ An `m x n matrix` multiplied by an `n x o matrix` results in an `m x o matrix`
 > 결과 matrix의 열이 각 집크기에 상응하는 예측 가격이다.   
 
 
-- Octave/Matlab commands  
+#### Octave/Matlab commands  
+
 ```matlab  
 % Initialize a 3 by 2 matrix   
 A = [1, 2; 3, 4;5, 6]  
@@ -719,7 +723,8 @@ Matrices are associative: (A∗B)∗C=A∗(B∗C)
 
 교환법칙, 결합법칙 모두 성립  
 
-- Octave/Matlab commands  
+#### Octave/Matlab commands  
+
 ```matlab  
 % Initialize random matrices A and B   
 A = [1,2;4,5]  
@@ -749,7 +754,8 @@ The inverse of a matrix A is denoted $A^{-1}$. Multiplying by the inverse result
 90도 회전된 행렬 The transposition of a matrix is like rotating the matrix 90° in clockwise direction and then reversing it.   
 ![](img/transpose.png)  
   
-- Octave/Matlab commands  
+#### Octave/Matlab commands  
+
 ```matlab  
 % Initialize matrix A   
 A = [1,2,0;0,5,6;7,0,9]  
