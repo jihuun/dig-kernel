@@ -13,12 +13,15 @@
 ## Table of contents  
 ---
 
+- [Machine Learning by Andrew Ng](#machine-learning-by-andrew-ng)
+  * [Table of contents](#table-of-contents)
 - [1. Introduction](#1-introduction)
   * [1. Introduction](#1-introduction-1)
     + [A. 응용분야](#a-----)
     + [B. ML 두가지 정의](#b-ml-------)
     + [C. ML 알고리즘 종류](#c-ml--------)
     + [D. Supervised Learning (지도 학습)](#d-supervised-learning--------)
+      - [Classification 문제](#classification---)
     + [E. Unsupervised Learning (비지도 학습)](#e-unsupervised-learning---------)
     + [f. 참고: Reinforcement Learning](#f-----reinforcement-learning)
   * [2. Linear Regression with One Variable](#2-linear-regression-with-one-variable)
@@ -27,6 +30,9 @@
       - [Model Representation](#model-representation)
       - [Cost Function (비용함수)](#cost-function-------)
       - [Simplified Cost function of Linear Regression](#simplified-cost-function-of-linear-regression)
+        * [a. $\theta_1 = 1$ 일때](#a---theta-1---1----)
+        * [b. $\theta_1 = 0.5$ 일때](#b---theta-1---05----)
+        * [c. $\theta_1 = 0$ 그리고  $\theta_1 = n$일때](#c---theta-1---0---------theta-1---n---)
       - [Cost function of Linear Regression](#cost-function-of-linear-regression)
     + [2. Parameter Learning (Gradient Descent)](#2-parameter-learning--gradient-descent-)
       - [A. Gradient Descent 알고리즘 수학적 정의](#a-gradient-descent------------)
@@ -171,10 +177,6 @@
   * [Predicting Movie Ratings: Problem define](#predicting-movie-ratings--problem-define)
   * [Predicting Movie Ratings: Practice](#predicting-movie-ratings--practice)
   * [Collaborative Filtering](#collaborative-filtering)
-  * [In practice of Collaborative Filtering](#in-practice-of-collaborative-filtering)
-  * [Low Rank Matrix Factorization](#low-rank-matrix-factorization)
-  * [Finding related movies](#finding-related-movies)
-  * [Implementational Detail: Mean Normalization](#implementational-detail--mean-normalization)
 
 <small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
 
@@ -321,7 +323,7 @@ Hypothesis Function은 다음과 같이 수식으로 나타낼 수 있다.
 $$
 h_\theta(x) = \theta_0 + \theta_1x  
 $$
-
+  
 
 #### Cost Function (비용함수)  
 
@@ -456,9 +458,10 @@ $ J(\theta_0, \theta_1) $ 의 값또한 최소값(중심부) 에서 멀리 떨�
 Gradient Descent알고리즘은 Cost function, J() 의 최소값을 찾기 위해 사용할 수 있다.  Gradient Descent 알고리즘은 Linear Regression 에만 쓸 수 있는건 아니고, 범용적인 알고리즘이다.   
 
 - 기본 아이디어   
-  * 어떤 값으로 $\theta_0$ 과 $\theta_1$ 를 초기화하여 시작한다 (보통 0)  
-  * $J(\theta_0, \theta_1)$를 최소화 하는 방향으로 $\theta_0$ 과 $\theta_1$를 변화시킨다. (J가 최소값이 될때 까지)  
-
+	* 어떤 값으로 $\theta_0$ 과 $\theta_1$ 를 초기화하여 시작한다 (보통 0)  
+	* $J(\theta_0, \theta_1)$를 최소화 하는 방향으로 $\theta_0$ 과 $\theta_1$를 변화시킨다. (J가 최소값이 될때 까지)  
+  
+  
 ![](https://d3c33hcgiwev3.cloudfront.net/imageAssetProxy.v1/bn9SyaDIEeav5QpTGIv-Pg_0d06dca3d225f3de8b5a4a7e92254153_Screenshot-2016-11-01-23.48.26.png?expiry=1535673600000&hmac=fuF5HHsACCtFNY5V-Kt2Th4jwFMtpC41uLQu8tazY7Y)  
 > 초기 지점부터 최소 지점으로 내려가야 한다. 어떻게 내려가는지 여러가지 알고리즘이 존재한다.   
 > 어느 지점에서 시작을 하느냐에 따라 어떤 지점으로 도착할지가 다를 수 있다.   
@@ -513,7 +516,6 @@ $\theta_1 := temp1$
   > 따라서 $\theta_1 := \theta_1 - \alpha (양수값)$ 을 계산하면 $\theta_1$은 점차 최저 J 값으로 이동하게 된다.   
 
   ![](img/derivetive2.png)  
-
   > 미분계수가 음수인경우도 마찬가지로 $\theta_1$이 점차 최저 J 값으로 이동하게 된다.   
 
 - Learning Rate $\alpha$  
@@ -590,7 +592,7 @@ So vectors are a subset of matrices. The above vector is a 4 x 1 matrix.
 #### notations  
 
 4 demensional Vector 이다.  
-
+  
 - $A_{ij}$  
 refers to the element in the ith row and jth column of matrix A.  
 - A vector with 'n' rows is referred to as an 'n'-dimensional vector.  
@@ -605,7 +607,7 @@ refers to the set of scalar real numbers.
 refers to the set of n-dimensional vectors of real numbers.  
 
 #### Octave/Matlab commands  
-
+  
 ```matlab  
 % The ; denotes we are going back to a new row.  
 A = [1, 2, 3; 4, 5, 6; 7, 8, 9; 10, 11, 12]  
@@ -905,7 +907,8 @@ To summarize:
 
 - If $\alphaα$ is too small: slow convergence.  
 - If $\alphaα$ is too large: ￼may not decrease on every iteration and thus may not converge.  
-
+  
+  
 #### E. Features and Polynomial Regression  
 
 이번챕터 에서는 어떻게 Feature를 선택할지, 적절한 Feature의 선택으로 강력한 학습 알고리즘을 만드는 방법에대해 알아본다. Polynomial Regression(다항 회귀?)에 대해서도 알아본다.  Polynomial Regression은 linear regression 을이용해서 복잡한 비선형 함수에도 적용하는 것이다.   
@@ -2327,7 +2330,7 @@ Theta1_grad(:,2:end) = Theta1_grad(:,2:end) + (lambda/m)*Theta1(:,2:end);
 Theta2_grad(:,1) = Theta2_grad(:,1);
 Theta1_grad(:,1) = Theta1_grad(:,1);
 
-```
+``` 
 
 ## ex4.m
 ---
@@ -2980,7 +2983,7 @@ function sim = gaussianKernel(x1, x2, sigma)
 sim = exp(-( (sum((x1 - x2) .^ 2)) / (2*(sigma^2)) ));
 ```
 > 공식에 맞게 계산만함.
-
+ 
 ## 3. Gaussian Kernel for non-linear
 ---
 
@@ -3676,7 +3679,7 @@ Anormaly Detection은 언제 사용하는가? 뒤에도 나오겠지만, 수집�
 확률 p(x)를 구했을때, 높으면 그래프에서 센터에 위치할것이고 합격이다. 반대는 부적합. 
 
 ![](img/anomal.png)
-​	  
+	  
 
 만약 data center에서 다음과 같은 feature로 각 컴퓨터를 모니터링 할때, 어느 하나의 컴퓨터가 모델 $P(x) < \epsilon$ 에 해당한다면 그 컴퓨터는 비정상 동작을 한다고 판단할 수 있을것이다. 
 
@@ -3761,7 +3764,7 @@ Spam 메일 예측의 경우 수많은 positive example(스팸 메일 데이터�
 
 feature를 어떻게 선정하면 좋을지 알아보자. 
 
-만약 feature x를 plot 해 봤을때, 위의 그림과 같이 나오면 좋겟지만 아래와 같은 그림이 나오면 어떻게 해야할까? 아래 공식들을 적절히 선택해서 적용해본다. 그렇게 gaussian 형태로 변환하면 된다-. 
+만약 feature x를 plot 해 봤을때, 위의 그림과 같이 나오면 좋겟지만 아래와 같은 그림이 나오면 어떻게 해야할까? 아래 공식들을 적절히 선택해서 적용해본다. 그렇게 gaussian 형태로 변환하면 된다. 
 
 ![](img/anomal16.png)
 
@@ -3816,12 +3819,6 @@ original model과 multivariate 의 장단점은 다음과 같다.
 ---
 
 실리콘밸리에서, 어떤 분야에 ML을 적용하고 있는지(싶은지) 물었을때, 많은 수의 회사가 추천 시스템이라고 답했다고 한다. 
-
-추가로 현업에서 사용하는 추천 알고리즘(Recommander Systems)은 12장에서 배울 Content-based recommander system 과, 13장에서 배울 Collaborative filtering 을 사용한다. 이것보다 더 좋은 방법론이 아직 개발되지 않았다고 한다. 참고로 다음은 카카오에서 사용하는 음악추천 알고리즘인데 슬라이드를 넘기다보면 우리와 같이 CBF, CF 를 사용함을 알 수 있다.  
-
-[눈으로 듣는 음악 추천 시스템, 최규민, Kakao, 2018](https://www.slideshare.net/ifkakao/ss-113740836)
-
-
 
 ## Predicting Movie Ratings: Problem define
 ---
@@ -3927,7 +3924,6 @@ $$
 \end{bmatrix}
 $$
 
----
 
 정리해보면 다음과 같다.  
 
@@ -3958,7 +3954,7 @@ $\theta$를 계산하기 위해서 Gradient descent는 다음과 같이 계산�
 
 
 ## Collaborative Filtering
----
+--- 
 
 실제 영화는 더 복합적인 feature를 가지고 있다. 이번에는 content-based recommander system이 아닌 다른방법에 대해 알아보자.  
 
@@ -3985,11 +3981,9 @@ $$
 $$
 
 ---
-`MINI Quize`:
+MINI Quize:
 다음을 계산해보자. 답은 0.5가 된다. $\theta$ * `?` 는 User가 매긴 점수가 되어야 하기 때문이다.  
 ![](img/rs10.png)
-
----
 
 종합해보면, feature x 의 값을 다음과 같이 구할 수 있다.  
 공식은 기존의 cost function과 동일하고 지난번에는 x를 알고 $\theta$ 를 구하는 것이었다면, 이번에는 $\theta$ 가 주어졌을때, x를 얻는 cost function인 것이다. 
@@ -4006,111 +4000,8 @@ $$
 
 ![](img/rs13.png)
 
-이 둘을 조합해서 사용하면 더 정밀한 결과를 얻을 수 있을것이다. 그것이 __Collaborative Filtering__ 알고리즘이다.  
+Guese $\theta$ -> $x$ -> $\theta$ -> $x$ -> $\theta$ -> $x$ ...
 
-어떤 방식으로 조합할 수 있을까?
-
-Initial random $\theta$ -> $x$ -> $\theta$ -> $x$ -> $\theta$ -> $x$ ...
-
-먼저 random 하게 $\theta$ 를 구해본 뒤 이것을 가지고 $x$ 를 구한다. 그뒤 그 $x$ 를 가지고 다시 조금 더 정확한 $\theta$ 를 구한다. 또다시 그 $\theta$ 를 가지고 보다 더 정확한 $x$ 를 구해본다. 이것을 반복하다보면 결국 매우 훌륭한 $x$ 와 $\theta$ 를 얻을 수 있다.
-
-
-
-## In practice of Collaborative Filtering
-
-![](img/cf.png)
-
-실제로는 Random $\theta$ -> $x$ -> $\theta$ -> $x$ -> $\theta$ -> $x$ ... 처럼 순서대로 구할 필요는 없다. 이 둘을 동시에 진행하는것이 가능하다. 다음과 같이 새로운 cost function $J()$을 정의함으로써 구현이 가능하다. 
-
-위의 두 공식을 더한것과 동일하다. $\sum$ 의 $(i,j):r(i,j)=1$ 은 위의 두공식의 각각의 것을 더한것과 동일한 의미를 갖는다. 
-
-![](img/cf2.png)
-
-결국 $J()$ 를 최소화 하는 parameter $x$ $\theta$ 를 구하면 되는것이다. 
-
-![](img/cf3.png)
-
-
-알고리즘은 다음과 같다.  
-
-![](img/cf4.png)
-
-Gradient descent 는 cost function $J(x, .., \theta, ..)$ 에 대해서 $x^{(i)}$ 와 $\theta^{(j)}$에 대해서 각각 편미분한 것을 이용한다.  
-
-
-## Low Rank Matrix Factorization
-
-
-벡터화 된 Collaborative Filtering 알고리즘에 대해 알아본다.  
-
-먼저 유져의 영화 평가 정보는 다음과 같이 Y matrix로 표현 가능하다.  
-
-![](img/cf5.png)
-
-그리고 Y의 예측값인 Predicted ratings는 우측과 같이 계산될 수 있다.  
-
-![](img/cf6.png)
-
-그리고 matrix X 와 \Theta 를 다음과 같이 정의해보자. 
-
-![](img/cf7.png)
-
-그렇다면 Predicted ratings, Y 의 예측값은 다음과 같이 계산 될 수 있다. 
-
-$$
-X\Theta^T
-$$
-
-이렇게 벡터화한것을  
-이것을 __Low Rank Matrix Factorization__ 라고 부른다.  
-
-## Finding related movies
-
-그렇다면, movies i와 유사한 영화들 j 는 어떻게 구할 수 있을까?  
-
-영화 i의 feature $x^{(i)}$ 가 영화 j 의 feature $x^{(j)}$ 가 유사하다면, 즉 차이가 작다면, 관련도가 매우 높은 영화라고 할 수 있지 않겠는가?  이를 수학적으로 표현하면
-
-$$
-small || x^{(i)} - x^{(j)} || 
-$$
-
-따라서 만약 영화 i 와 유사도가 높은 5개의 영화를 찾고자 한다면 $|| x^{(i)} - x^{(j)} ||$ 가 가장 작은 영화 j 를 5개 선정하면 되는것이다.   
-
-![](img/cf8.png)
-
-
-## Implementational Detail: Mean Normalization
-
-Mean Normalization 을 사용하면 종종 더 잘 동작할 수 있다. 만약 어떠한 영화도 평가하지 않은 사용자가 있다고 해보자.  
-
-![](img/cf9.png)
-
-이 사용자에 대해서 Collaborative Filtering 을 이용하면 어떤 값을 예측해주는지 살펴보자.  
-
-
-$\theta^{(5)}$에대해서 영향이 있는 유일한 항은 마지막항이다. 따라서 cost function J() 를 최소화 할때, 사용자 5 번에 대해서는 $(\lambda \over 2 [(\theta^{(5)}_1)^2 + (\theta^{(5)}_2)^2]$ 을 계산하면된다. 
-결국 $\theta^{(5)}$ 는 [0; 0] 이 된다. 따라서 $\theta^{(5)}$ 에 대해서 모든 $x^{(i)}$를 계산하면 다음과 같이 0이 될것이다.
-
-$$
-(\theta^{(5)})^T x^{(i)} = 0
-$$ 
-
-따라서 사용자5 Eve는 모든영화에 대해서 0으로 예상점수를 줄 수 있을것이다.  
-
-이 방법은 매우 Useless 해보인다. 다른방법을 살펴보자.  
-바로 다른 사용자가 평가한 값을 평균내는것이다. 이것이 __Mean Normalization__ 방법이다.  
-
-다음과 같이 평균은 $\mu$ 벡터로 표현해보자. 그리고 Y에서  $\mu$ 를 뺀다. 이것은 평균을 0으로 normalize한것이다. 이렇게하면 평균이 0이 된다. 
-
- 
-![](img/cf10.png)
-
-이렇게 변경한 Y matrix를 가지고 parameter $\theta^{(5)}$ 와 $ x^{(i)}$ 를 학습할 것이다. 
-
-따라서 영화 i에 대해서 사용자 j의 예측값은 다음과 같이 될 것이다. $\mu$ 를 다시 더해서 original 로 돌아간다. 
-
-![](img/cf11.png)
-
-사용자 5에 대해서 이것을 계산해보면 $\mu_i$ 만 남는다. 즉 아무것도 평가하지 않은 사용자에 대해서 영화 $ x^{(i)}$ 를 평균값으로 예측해준다는 의미다.  
+random 하게 $\theta$ 를 구해본 뒤 이것을 가지고 $x$ 를 구한다. 그뒤 그 $x$ 를 가지고 다시 조금 더 정확한 $\theta$ 를 구한다. 또다시 그 $\theta$ 를 가지고 보다 더 정확한 $x$ 를 구해본다. 이것을 반복하다보면 결국 매우 훌륭한 $x$ 와 $\theta$ 를 얻을 수 있다. 이것이 Collaborative Filtering 알고리즘이다.  
 
 
