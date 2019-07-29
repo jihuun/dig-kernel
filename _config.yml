@@ -1,1 +1,4 @@
 theme: jekyll-theme-leap-day
+# Google Analytics
+# To enable google analytics, uncomment below line with a valid Google Tracking ID
+google_tracking_id: UA-144742509-1
